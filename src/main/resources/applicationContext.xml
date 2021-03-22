@@ -9,9 +9,9 @@
 
     <context:property-placeholder location="classpath:CacheConfig.properties"/>
 
-    <bean id="testBean" class="ru.baryshev.kirill.MyCacheLfu">
-        <property name="maxSize" value="${cache.cacheSize}"/>
-        <property name="removalAlgorithm" value="${cache.strategy}"/>
+    <bean id="Cache" class="ru.baryshev.kirill.MySuperCache">
+        <constructor-arg name="maxSize" value="${cache.cacheSize}"/>
+        <constructor-arg name="algorithmName" value="${cache.strategy}"/>
     </bean>
 
 </beans>
