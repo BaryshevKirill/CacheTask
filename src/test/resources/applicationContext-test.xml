@@ -7,11 +7,16 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:property-placeholder location="classpath:CacheConfig.properties"/>
+    <context:property-placeholder location="classpath:Config.properties"/>
 
-    <bean id="testBean" class="ru.baryshev.kirill.MyCacheLfu">
-        <property name="maxSize" value="${cache.cacheSize}"/>
-        <property name="removalAlgorithm" value="${cache.strategy}"/>
+    <bean id="cacheLFU" class="ru.baryshev.kirill.MySuperCache">
+        <constructor-arg name="maxSize" value="${cache.cacheSize}"/>
+        <constructor-arg name="algorithmName" value="${cacheLFU.strategy}"/>
+    </bean>
+
+    <bean id="cacheLRU" class="ru.baryshev.kirill.MySuperCache">
+        <constructor-arg name="maxSize" value="${cache.cacheSize}"/>
+        <constructor-arg name="algorithmName" value="${cacheLRU.strategy}"/>
     </bean>
 
 </beans>
