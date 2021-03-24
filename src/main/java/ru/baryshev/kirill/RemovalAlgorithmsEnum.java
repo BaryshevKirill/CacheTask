@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum RemovalAlgorithms {
+public enum RemovalAlgorithmsEnum {
     LRU ("LRU","Less Recent Usage"),
     LFU ("LFU","Less Frequent Usage");
 

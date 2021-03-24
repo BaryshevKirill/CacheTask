@@ -9,9 +9,11 @@
 
     <context:property-placeholder location="classpath:CacheConfig.properties"/>
 
-    <bean id="Cache" class="ru.baryshev.kirill.MySuperCache">
-        <constructor-arg name="maxSize" value="${cache.cacheSize}"/>
-        <constructor-arg name="algorithmName" value="${cache.strategy}"/>
+    <bean id="algorithm" class="ru.baryshev.kirill.AlgorithmFactory"/>
+
+    <bean id="cache" class="ru.baryshev.kirill.MySuperCache">
+        <constructor-arg value="${cache.cacheSize}"/>
+        <constructor-arg ref="algorithm"/>
     </bean>
 
 </beans>

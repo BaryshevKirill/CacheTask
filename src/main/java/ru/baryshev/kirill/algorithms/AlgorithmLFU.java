@@ -1,4 +1,4 @@
-package ru.baryshev.kirill;
+package ru.baryshev.kirill.algorithms;
 
 import lombok.extern.log4j.Log4j;
 
@@ -16,7 +16,7 @@ public class AlgorithmLFU<K, V> implements Algorithm<K, V> {
 
     /**
      * Мапа для хранения частоты использования различных элементов.
-     * Необходим для реализации LFU необходимо
+     * Необходим для реализации LFU
      */
     private Map<K, Integer> mapWithCount = new HashMap<>();
 

@@ -2,14 +2,14 @@ package ru.baryshev.kirill;
 
 import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Component;
+import ru.baryshev.kirill.algorithms.Algorithm;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Component
 @Log4j
-public class MySuperCache<K, V>  {
-
+public class MySuperCache<K, V> {
     /**
      * Мапа для хранения данных кеша
      */
@@ -23,13 +23,13 @@ public class MySuperCache<K, V>  {
      */
     protected Algorithm algorithm;
 
-    public MySuperCache(Integer maxSize, String algorithmName) {
+    public MySuperCache(Integer maxSize, Algorithm algorithm) {
         if (maxSize <= 0) {
             log.error("Максимальный размер хеша должен быть больше 0");
             throw new IllegalArgumentException("Максимальный размер хеша должен быть больше 0");
         }
         this.maxSize = maxSize;
-        this.algorithm = RemovalAlgorithms.LFU.getId().equals(algorithmName) ? new AlgorithmLFU() : new AlgorithmLRU();
+        this.algorithm = algorithm;
     }
 
     /**

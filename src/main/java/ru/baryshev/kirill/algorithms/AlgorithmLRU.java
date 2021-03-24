@@ -1,4 +1,4 @@
-package ru.baryshev.kirill;
+package ru.baryshev.kirill.algorithms;
 
 
 import lombok.extern.log4j.Log4j;
@@ -24,7 +24,7 @@ public class AlgorithmLRU<K, V> implements Algorithm<K, V> {
     /**
      * Индекс перового элемента списка
      */
-    final Integer INDEX_OF_FIRST_ELEM = 0;
+    private final Integer INDEX_OF_FIRST_ELEM = 0;
 
     /**
      *

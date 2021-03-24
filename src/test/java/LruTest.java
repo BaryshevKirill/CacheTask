@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import ru.baryshev.kirill.AlgorithmLRU;
+import ru.baryshev.kirill.algorithms.AlgorithmLRU;
 import ru.baryshev.kirill.MySuperCache;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,6 +22,6 @@ public class LruTest {
 
     @Test
     public void testNameOfAlgorithm() {
-        Assert.assertEquals(cache.getAlgorithmName(), AlgorithmLRU.class.getSimpleName());
+        Assert.assertEquals(AlgorithmLRU.class.getSimpleName(), cache.getAlgorithmName());
     }
 }

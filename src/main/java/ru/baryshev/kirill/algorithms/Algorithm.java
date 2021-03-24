@@ -1,4 +1,4 @@
-package ru.baryshev.kirill;
+package ru.baryshev.kirill.algorithms;
 
 
 import java.util.Map;
