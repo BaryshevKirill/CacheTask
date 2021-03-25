@@ -25,6 +25,8 @@ public class LfuTest {
     @Value("${cache.cacheSize}")
     Integer expectedSize;
 
+
+
     @Test
     public void testNameOfAlgorithm() {
         Assert.assertEquals(CacheLFU.class.getSimpleName(), cache.getClass().getSimpleName());
@@ -56,6 +58,4 @@ public class LfuTest {
         Assert.assertTrue(expectedMap.keySet().containsAll(cache.getAll().keySet()));
         Assert.assertTrue(expectedMap.values().containsAll(cache.getAll().values()));
     }
-
-
 }
