@@ -44,7 +44,6 @@ public class CacheLRU<K, V> implements Cache<K, V> {
         }
 
         mapWithValue.put(key, value);
-//        listOfKeys.add(key);
         log.info(String.format("В кеш добавлен элемент. Ключ: %s; Значение: %s.", key, value));
     }
 
@@ -59,8 +58,6 @@ public class CacheLRU<K, V> implements Cache<K, V> {
             return null;
         }
         V value = mapWithValue.get(key);
-//        listOfKeys.remove(key);
-//        listOfKeys.add(key);
         mapWithValue.remove(key);
         mapWithValue.put(key,value);
         log.info(String.format("В кеше \"Возраст\" для ключа %s был сброшен!", key));
@@ -81,12 +78,11 @@ public class CacheLRU<K, V> implements Cache<K, V> {
      * Алгоритм удаления для LRU
      */
     private void removeValue() {
-        int firstElemIndex = 0;
         K keyForRemove = mapWithValue.keySet().iterator().next();
-//        K keyForRemove = listOfKeys.get(firstElemIndex);
+        V value = mapWithValue.get(keyForRemove);
         mapWithValue.remove(keyForRemove);
-//        listOfKeys.remove(firstElemIndex);
-    }
+        log.info(String.format("Из кеша удален элемент. Ключ: %s; Значение: %s;",
+                keyForRemove, value));    }
 
     /**
      * Возвращает все элементы кеша
