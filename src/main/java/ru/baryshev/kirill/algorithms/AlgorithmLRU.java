@@ -22,28 +22,25 @@ public class AlgorithmLRU<K, V> implements Algorithm<K, V> {
     private List<K> list = new LinkedList<>();
 
     /**
-     * Индекс перового элемента списка
-     */
-    private final Integer INDEX_OF_FIRST_ELEM = 0;
-
-    /**
+     * Алгоритм удаления для LRU
      *
      * @param mapWithValue Мапа содержащая ключ и значение кеша
      */
     @Override
     public void removeValue(Map<K, V> mapWithValue) {
-        K keyForRemove = list.get(INDEX_OF_FIRST_ELEM);
+        int firstElemIndex = 0;
+        K keyForRemove = list.get(firstElemIndex);
         mapWithValue.remove(keyForRemove);
-        list.remove(INDEX_OF_FIRST_ELEM);
+        list.remove(firstElemIndex);
     }
 
     /**
      * После добавления нового ключа необходимо добавить его в список ключей.
-     * @param key Ключ элемента
+     *
+     * @param key   Ключ элемента
      * @param value Значение элемента (не используется)
      */
     @Override
-    //    TODO Удалить не нужный парметр в методе или сделать динамический массив
     public void put(K key, V value) {
         list.add(key);
         log.info(String.format("Добавлен элемент в list. Ключ: %s; Значение: %s", key, value));
@@ -52,6 +49,7 @@ public class AlgorithmLRU<K, V> implements Algorithm<K, V> {
     /**
      * После обращения к элементу, необходимо его перенести в конец списка.
      * Т.к. он самый последний элемент, к которому обратились.
+     *
      * @param key Ключ
      */
     @Override
