@@ -63,6 +63,11 @@ public class CacheLRU<K, V> implements Cache<K, V> {
         return mapWithValue.get(key);
     }
 
+    /**
+     * Полчить текущий размер кеша
+     *
+     * @return Текущий размер кеша
+     */
     @Override
     public Integer currentSize() {
         return mapWithValue.size();
@@ -77,6 +82,4 @@ public class CacheLRU<K, V> implements Cache<K, V> {
         mapWithValue.remove(keyForRemove);
         listOfKeys.remove(firstElemIndex);
     }
-
-
 }

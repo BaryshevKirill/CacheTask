@@ -1,7 +1,9 @@
 package ru.baryshev.kirill;
 
 import lombok.extern.log4j.Log4j;
+import org.graalvm.util.CollectionsUtil;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,6 +65,11 @@ public class CacheLFU<K, V> implements Cache<K, V> {
         return mapWithValue.get(key);
     }
 
+    /**
+     * Полчить текущий размер кеша
+     *
+     * @return Текущий размер кеша
+     */
     @Override
     public Integer currentSize() {
         return mapWithValue.size();
