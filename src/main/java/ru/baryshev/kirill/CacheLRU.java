@@ -13,7 +13,7 @@ public class CacheLRU<K, V> implements Cache<K, V> {
     /**
      * Мапа для хранения данных кеша
      */
-    private Map<K, V> mapWithValue = new LinkedHashMap<>(15,0.75f,true);
+    private Map<K, V> mapWithValue;
     /**
      * Максимальный размер кеша
      */
@@ -29,6 +29,7 @@ public class CacheLRU<K, V> implements Cache<K, V> {
             throw new IllegalArgumentException("Максимальный размер хеша должен быть больше 0");
         }
         this.maxSize = maxSize;
+        mapWithValue = new LinkedHashMap<>(maxSize+1,1f,true);
         log.info("Создан кеш с реализацией LRU(Самый старый)");
     }
 
