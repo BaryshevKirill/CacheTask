@@ -3,7 +3,6 @@ package ru.baryshev.kirill;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.FactoryBean;
-import org.springframework.beans.factory.annotation.Value;
 
 @Log4j
 @AllArgsConstructor
