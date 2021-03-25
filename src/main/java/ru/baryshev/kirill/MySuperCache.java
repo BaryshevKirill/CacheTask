@@ -7,21 +7,20 @@ import ru.baryshev.kirill.algorithms.Algorithm;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component
 @Log4j
 public class MySuperCache<K, V> {
     /**
      * Мапа для хранения данных кеша
      */
-    protected Map<K, V> mapWithValue = new HashMap<>();
+    private Map<K, V> mapWithValue = new HashMap<>();
     /**
      * Максимальный размер кеша
      */
-    protected Integer maxSize;
+    private Integer maxSize;
     /**
      * Алгоритм удаления
      */
-    protected Algorithm algorithm;
+    private Algorithm algorithm;
 
     public MySuperCache(Integer maxSize, Algorithm algorithm) {
         if (maxSize <= 0) {

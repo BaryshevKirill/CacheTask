@@ -5,7 +5,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
     public static void main(String[] args) {
-//        ApplicationContext context = new AnnotationConfigApplicationContext("ru.baryshev.kirill");
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
     }
 }
