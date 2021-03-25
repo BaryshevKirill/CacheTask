@@ -1,9 +1,7 @@
 package ru.baryshev.kirill;
 
 import lombok.extern.log4j.Log4j;
-import org.graalvm.util.CollectionsUtil;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 

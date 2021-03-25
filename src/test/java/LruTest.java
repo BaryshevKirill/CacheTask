@@ -45,5 +45,6 @@ public class LruTest {
         cache.get(3L);
         cache.put(4L, "Long 4");
         Assert.assertNull(cache.get(2L));
+        Assert.assertEquals("Long 4",cache.get(4L));
     }
 }
