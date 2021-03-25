@@ -20,7 +20,7 @@ public class CacheLRU<K, V> implements Cache<K, V> {
     /**
      * Из-за особенности линкед листа в нем будут храниться ключи.
      */
-    private List<K> list = new LinkedList<>();
+    private List<K> listOfKeys = new LinkedList<>();
 
     public CacheLRU(Integer maxSize) {
         if (maxSize <= 0) {
@@ -43,7 +43,7 @@ public class CacheLRU<K, V> implements Cache<K, V> {
         }
 
         mapWithValue.put(key, value);
-        list.add(key);
+        listOfKeys.add(key);
         log.info(String.format("В кеш добавлен элемент. Ключ: %s; Значение: %s.", key, value));
     }
 
@@ -57,8 +57,8 @@ public class CacheLRU<K, V> implements Cache<K, V> {
             log.error("В кеше не найден элемент с ключом: " + key);
             return null;
         }
-        list.remove(key);
-        list.add(key);
+        listOfKeys.remove(key);
+        listOfKeys.add(key);
         log.info(String.format("В кеше \"Возраст\" для ключа %s был сброшен!", key));
         return mapWithValue.get(key);
     }
@@ -71,10 +71,12 @@ public class CacheLRU<K, V> implements Cache<K, V> {
     /**
      * Алгоритм удаления для LRU
      */
-    public void removeValue() {
+    private void removeValue() {
         int firstElemIndex = 0;
-        K keyForRemove = list.get(firstElemIndex);
+        K keyForRemove = listOfKeys.get(firstElemIndex);
         mapWithValue.remove(keyForRemove);
-        list.remove(firstElemIndex);
+        listOfKeys.remove(firstElemIndex);
     }
+
+
 }

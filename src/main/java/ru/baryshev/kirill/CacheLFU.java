@@ -32,25 +32,6 @@ public class CacheLFU<K, V> implements Cache<K, V> {
     }
 
     /**
-     * Алгоритм удаления для LFU
-     */
-    private void removeValue() {
-        K keyOfMinValue = null;
-        Integer minValue = Integer.MAX_VALUE;
-        for (Map.Entry<K, Integer> entry : mapWithCount.entrySet()) {
-            if (minValue > entry.getValue()) {
-                minValue = entry.getValue();
-                keyOfMinValue = entry.getKey();
-            }
-        }
-        V valueOfMinValue = mapWithValue.get(keyOfMinValue);
-        mapWithValue.remove(keyOfMinValue);
-        mapWithCount.remove(keyOfMinValue);
-        log.info(String.format("Из кеша удален элемент. Ключ: %s; Значение: %s; Количество использований: %s.",
-                keyOfMinValue, valueOfMinValue, minValue));
-    }
-
-    /**
      * Добавление элемента
      *
      * @param key   Ключ
@@ -85,5 +66,24 @@ public class CacheLFU<K, V> implements Cache<K, V> {
     @Override
     public Integer currentSize() {
         return mapWithValue.size();
+    }
+
+    /**
+     * Алгоритм удаления для LFU
+     */
+    private void removeValue() {
+        K keyOfMinValue = null;
+        Integer minValue = Integer.MAX_VALUE;
+        for (Map.Entry<K, Integer> entry : mapWithCount.entrySet()) {
+            if (minValue > entry.getValue()) {
+                minValue = entry.getValue();
+                keyOfMinValue = entry.getKey();
+            }
+        }
+        V valueOfMinValue = mapWithValue.get(keyOfMinValue);
+        mapWithValue.remove(keyOfMinValue);
+        mapWithCount.remove(keyOfMinValue);
+        log.info(String.format("Из кеша удален элемент. Ключ: %s; Значение: %s; Количество использований: %s.",
+                keyOfMinValue, valueOfMinValue, minValue));
     }
 }
