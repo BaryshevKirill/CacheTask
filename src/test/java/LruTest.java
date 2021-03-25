@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import ru.baryshev.kirill.algorithms.AlgorithmLRU;
-import ru.baryshev.kirill.MySuperCache;
+import ru.baryshev.kirill.Cache;
+import ru.baryshev.kirill.CacheLRU;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -17,14 +17,14 @@ public class LruTest {
 
     @Autowired
     @Qualifier("cacheLRU")
-    MySuperCache cache;
+    Cache cache;
 
     @Value("${cache.cacheSize}")
     Integer expectedSize;
 
     @Test
     public void testNameOfAlgorithm() {
-        Assert.assertEquals(AlgorithmLRU.class.getSimpleName(), cache.getAlgorithmName());
+        Assert.assertEquals(CacheLRU.class.getSimpleName(), cache.getClass().getSimpleName());
     }
 
     @Test

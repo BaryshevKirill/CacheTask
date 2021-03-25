@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import ru.baryshev.kirill.algorithms.AlgorithmLFU;
-import ru.baryshev.kirill.MySuperCache;
+import ru.baryshev.kirill.Cache;
+import ru.baryshev.kirill.CacheLFU;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -17,14 +17,14 @@ public class LfuTest {
 
     @Autowired
     @Qualifier("cacheLFU")
-    MySuperCache cache;
+    Cache cache;
 
     @Value("${cache.cacheSize}")
     Integer expectedSize;
 
     @Test
     public void testNameOfAlgorithm() {
-        Assert.assertEquals(AlgorithmLFU.class.getSimpleName(), cache.getAlgorithmName());
+        Assert.assertEquals(CacheLFU.class.getSimpleName(), cache.getClass().getSimpleName());
     }
 
     @Test

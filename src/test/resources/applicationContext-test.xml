@@ -9,18 +9,14 @@
 
     <context:property-placeholder location="classpath:Config.properties"/>
 
-    <bean id="LRU" class="ru.baryshev.kirill.algorithms.AlgorithmLRU"/>
-
-    <bean id="LFU" class="ru.baryshev.kirill.algorithms.AlgorithmLFU"/>
-
-    <bean id="cacheLFU" class="ru.baryshev.kirill.MySuperCache">
+    <bean id="cacheLRU" class="ru.baryshev.kirill.CacheFactory">
+        <constructor-arg value="${cacheLRU.strategy}"/>
         <constructor-arg value="${cache.cacheSize}"/>
-        <constructor-arg ref="LFU"/>
     </bean>
 
-    <bean id="cacheLRU" class="ru.baryshev.kirill.MySuperCache">
+    <bean id="cacheLFU" class="ru.baryshev.kirill.CacheFactory">
+        <constructor-arg value="${cacheLFU.strategy}"/>
         <constructor-arg value="${cache.cacheSize}"/>
-        <constructor-arg ref="LRU"/>
     </bean>
 
 
