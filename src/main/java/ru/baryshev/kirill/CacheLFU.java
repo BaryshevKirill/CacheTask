@@ -91,4 +91,14 @@ public class CacheLFU<K, V> implements Cache<K, V> {
         log.info(String.format("Из кеша удален элемент. Ключ: %s; Значение: %s; Количество использований: %s.",
                 keyOfMinValue, valueOfMinValue, minValue));
     }
+
+    /**
+     * Возвращает все элементы кеша
+     *
+     * @return Мапа с ключом-значением кеша
+     */
+    @Override
+    public Map<K, V> getAll() {
+        return mapWithValue;
+    }
 }

@@ -1,5 +1,7 @@
 package ru.baryshev.kirill;
 
+import java.util.Map;
+
 public interface Cache<K, V> {
 
     /**
@@ -11,16 +13,21 @@ public interface Cache<K, V> {
     void put(K key, V value);
 
     /**
-     * Полчение элемента по ключу
+     * Получение элемента по ключу
      *
      * @param key Ключ
      */
     V get(K key);
 
     /**
-     * Полчение текущего размера кеша
+     * Получение текущего размера кеша
      *
      * @return Размер кеша
      */
     Integer currentSize();
+
+    /**
+     * Возвращает все элементы кеша
+     */
+    Map<K,V> getAll();
 }

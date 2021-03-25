@@ -82,4 +82,14 @@ public class CacheLRU<K, V> implements Cache<K, V> {
         mapWithValue.remove(keyForRemove);
         listOfKeys.remove(firstElemIndex);
     }
+
+    /**
+     * Возвращает все элементы кеша
+     *
+     * @return Мапа с ключом-значением кеша
+     */
+    @Override
+    public Map<K, V> getAll() {
+        return mapWithValue;
+    }
 }
