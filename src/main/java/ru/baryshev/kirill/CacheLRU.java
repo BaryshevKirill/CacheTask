@@ -42,7 +42,6 @@ public class CacheLRU<K, V> implements Cache<K, V> {
         if (mapWithValue.size() == maxSize) {
             removeValue();
         }
-
         mapWithValue.put(key, value);
         log.info(String.format("В кеш добавлен элемент. Ключ: %s; Значение: %s.", key, value));
     }
