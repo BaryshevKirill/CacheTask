@@ -10,6 +10,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.baryshev.kirill.Cache;
 import ru.baryshev.kirill.CacheLFU;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @ContextConfiguration(locations = {"classpath:applicationContext-test.xml"})
@@ -38,6 +41,11 @@ public class LfuTest {
 
     @Test
     public void testRemove() {
+        Map expectedMap = new HashMap<Long,String>();
+        expectedMap.put(1L, "Long 1");
+        expectedMap.put(3L, "Long 3");
+        expectedMap.put(4L, "Long 4");
+
         cache.put(1L, "Long 1");
         cache.put(2L, "Long 2");
         cache.put(3L, "Long 3");
@@ -45,5 +53,9 @@ public class LfuTest {
         cache.get(3L);
         cache.put(4L, "Long 4");
         Assert.assertNull(cache.get(2L));
+        Assert.assertTrue(expectedMap.keySet().containsAll(cache.getAll().keySet()));
+        Assert.assertTrue(expectedMap.values().containsAll(cache.getAll().values()));
     }
+
+
 }
