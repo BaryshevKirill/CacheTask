@@ -28,6 +28,8 @@ public class CacheLRU<K, V> implements Cache<K, V> {
             throw new IllegalArgumentException("Максимальный размер хеша должен быть больше 0");
         }
         this.maxSize = maxSize;
+        log.info("Создан кеш с реализацией LRU(Самый старый)");
+
     }
 
     /**
