@@ -31,7 +31,6 @@ public class CacheLFU<K, V> implements Cache<K, V> {
         log.info("Создан кеш с реализацией LFU(Часто используемые)");
     }
 
-
     /**
      * Алгоритм удаления для LFU
      */
@@ -51,6 +50,12 @@ public class CacheLFU<K, V> implements Cache<K, V> {
                 keyOfMinValue, valueOfMinValue, minValue));
     }
 
+    /**
+     * Добавление элемента
+     *
+     * @param key   Ключ
+     * @param value Значение
+     */
     @Override
     public void put(K key, V value) {
         if (mapWithValue.size() == maxSize) {
@@ -61,6 +66,11 @@ public class CacheLFU<K, V> implements Cache<K, V> {
         log.info(String.format("В LFU кеш добавлен элемент. Ключ: %s; Значение: %s.", key, value));
     }
 
+    /**
+     * Полчение элемента по ключу
+     *
+     * @param key Ключ
+     */
     @Override
     public V get(K key) {
         if (!mapWithValue.containsKey(key)) {

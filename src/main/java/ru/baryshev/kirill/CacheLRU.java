@@ -29,7 +29,6 @@ public class CacheLRU<K, V> implements Cache<K, V> {
         }
         this.maxSize = maxSize;
         log.info("Создан кеш с реализацией LRU(Самый старый)");
-
     }
 
     /**
