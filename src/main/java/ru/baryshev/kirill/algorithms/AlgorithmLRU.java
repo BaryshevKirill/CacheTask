@@ -27,11 +27,11 @@ public class AlgorithmLRU<K, V> implements Algorithm<K, V> {
      * @param mapWithValue Мапа содержащая ключ и значение кеша
      */
     @Override
-    public void removeValue(Map<K, V> mapWithValue) {
+    public K removeValue() {
         int firstElemIndex = 0;
         K keyForRemove = list.get(firstElemIndex);
-        mapWithValue.remove(keyForRemove);
         list.remove(firstElemIndex);
+        return keyForRemove;
     }
 
     /**

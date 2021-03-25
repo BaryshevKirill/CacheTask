@@ -21,7 +21,7 @@ public class AlgorithmLFU<K, V> implements Algorithm<K, V> {
     private Map<K, Integer> mapWithCount = new HashMap<>();
 
     @Override
-    public void removeValue(Map<K, V> mapWithValue) {
+    public K removeValue() {
         K keyOfMinValue = null;
         Integer minValue = Integer.MAX_VALUE;
         for (Map.Entry<K, Integer> entry : mapWithCount.entrySet()) {
@@ -30,11 +30,8 @@ public class AlgorithmLFU<K, V> implements Algorithm<K, V> {
                 keyOfMinValue = entry.getKey();
             }
         }
-        V valueOfMinValue = mapWithValue.get(keyOfMinValue);
-        mapWithValue.remove(keyOfMinValue);
         mapWithCount.remove(keyOfMinValue);
-        log.info(String.format("Из кеша удален элемент. Ключ: %s; Значение: %s; Количество использований: %s.",
-                keyOfMinValue, valueOfMinValue, minValue));
+        return keyOfMinValue;
     }
 
     @Override

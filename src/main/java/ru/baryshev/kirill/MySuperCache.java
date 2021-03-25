@@ -39,7 +39,9 @@ public class MySuperCache<K, V> {
      */
     public void put(K key, V value) {
         if (mapWithValue.size() == maxSize) {
-            algorithm.removeValue(mapWithValue);
+            Object o = algorithm.removeValue();
+            mapWithValue.remove(o);
+            log.info(String.format("Из кеша удален элемент. Ключ: %s; ", o.toString()));
         }
 
         mapWithValue.put(key, value);
