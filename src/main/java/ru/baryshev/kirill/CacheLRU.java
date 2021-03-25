@@ -3,6 +3,7 @@ package ru.baryshev.kirill;
 import lombok.extern.log4j.Log4j;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -12,15 +13,15 @@ public class CacheLRU<K, V> implements Cache<K, V> {
     /**
      * Мапа для хранения данных кеша
      */
-    private Map<K, V> mapWithValue = new HashMap<>();
+    private Map<K, V> mapWithValue = new LinkedHashMap<>();
     /**
      * Максимальный размер кеша
      */
     private Integer maxSize;
-    /**
-     * Из-за особенности линкед листа в нем будут храниться ключи.
-     */
-    private List<K> listOfKeys = new LinkedList<>();
+//    /**
+//     * Из-за особенности линкед листа в нем будут храниться ключи.
+//     */
+//    private List<K> listOfKeys = new LinkedList<>();
 
     public CacheLRU(Integer maxSize) {
         if (maxSize <= 0) {
@@ -43,7 +44,7 @@ public class CacheLRU<K, V> implements Cache<K, V> {
         }
 
         mapWithValue.put(key, value);
-        listOfKeys.add(key);
+//        listOfKeys.add(key);
         log.info(String.format("В кеш добавлен элемент. Ключ: %s; Значение: %s.", key, value));
     }
 
@@ -57,8 +58,11 @@ public class CacheLRU<K, V> implements Cache<K, V> {
             log.error("В кеше не найден элемент с ключом: " + key);
             return null;
         }
-        listOfKeys.remove(key);
-        listOfKeys.add(key);
+        V value = mapWithValue.get(key);
+//        listOfKeys.remove(key);
+//        listOfKeys.add(key);
+        mapWithValue.remove(key);
+        mapWithValue.put(key,value);
         log.info(String.format("В кеше \"Возраст\" для ключа %s был сброшен!", key));
         return mapWithValue.get(key);
     }
@@ -78,9 +82,10 @@ public class CacheLRU<K, V> implements Cache<K, V> {
      */
     private void removeValue() {
         int firstElemIndex = 0;
-        K keyForRemove = listOfKeys.get(firstElemIndex);
+        K keyForRemove = mapWithValue.keySet().iterator().next();
+//        K keyForRemove = listOfKeys.get(firstElemIndex);
         mapWithValue.remove(keyForRemove);
-        listOfKeys.remove(firstElemIndex);
+//        listOfKeys.remove(firstElemIndex);
     }
 
     /**

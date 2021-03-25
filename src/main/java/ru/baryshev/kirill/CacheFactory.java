@@ -16,9 +16,9 @@ public class CacheFactory implements FactoryBean<Cache> {
     public Cache getObject() throws Exception {
         switch (algorithmType.toUpperCase()) {
             case "LFU":
-                return new CacheLFU(maxSize);
+                return new CacheLFU<>(maxSize);
             case "LRU":
-                return new CacheLRU(maxSize);
+                return new CacheLRU<>(maxSize);
             default:
                 log.error("Не возможно создать кеш с типом алгоритма: " + algorithmType);
                 throw new IllegalArgumentException("Неверный тип алгоритма" + algorithmType);
