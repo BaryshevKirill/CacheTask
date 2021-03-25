@@ -13,7 +13,7 @@ public class CacheLRU<K, V> implements Cache<K, V> {
     /**
      * Мапа для хранения данных кеша
      */
-    private Map<K, V> mapWithValue = new LinkedHashMap<>();
+    private Map<K, V> mapWithValue = new LinkedHashMap<>(15,0.75f,true);
     /**
      * Максимальный размер кеша
      */
@@ -57,9 +57,6 @@ public class CacheLRU<K, V> implements Cache<K, V> {
             log.error("В кеше не найден элемент с ключом: " + key);
             return null;
         }
-        V value = mapWithValue.get(key);
-        mapWithValue.remove(key);
-        mapWithValue.put(key,value);
         log.info(String.format("В кеше \"Возраст\" для ключа %s был сброшен!", key));
         return mapWithValue.get(key);
     }
